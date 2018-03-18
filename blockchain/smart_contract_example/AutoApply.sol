@@ -112,7 +112,7 @@ contract AutoApply is Basic {
      * 到期解除锁定
      */
     function claim() public {
-        claimTo(msg.sender);
+        _claimTo(msg.sender);
     }
 
     /**

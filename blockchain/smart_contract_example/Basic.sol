@@ -77,7 +77,7 @@ contract Basic is Owner {
     }
 
     /**
-     * Token从指定账æ·è½¬账给目的账户
+     * Token从指定账户转账给目的账户
      *
      * @param _from 来源账户
      * @param _to   目的账户
