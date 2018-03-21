@@ -13,6 +13,12 @@ contract Basic is Owner {
     // Token总供应量
     uint256 public totalSupply;
 
+    // Token转账
+    struct TransferToken {
+        address to;
+        uint    value;
+    }
+
     // 账户里可用token余额
     mapping (address => uint256) public balanceOf;
 
@@ -23,6 +29,8 @@ contract Basic is Owner {
     event Burn(address indexed from, uint256 value);
     // Token增发消息
     event Offer(uint256 value);
+    // 提币
+    event Withdraw(uint value);
 
     /**
      * 初始化
@@ -39,6 +47,15 @@ contract Basic is Owner {
         balanceOf[msg.sender] = totalSupply;
         name = _tokenName;
         symbol = _tokenSymbol;
+    }
+
+    /**
+     * owner取出以太币
+     * @param _value eth数量 
+     */
+    function withdraw(uint _value) onlyOwner public {
+        owner.transfer(_value);
+        Withdraw(_value);
     }
 
     /**
@@ -74,6 +91,17 @@ contract Basic is Owner {
      */
     function transfer(address _to, uint256 _value) public {
         _transfer(msg.sender, _to, _value);
+    }
+
+    /**
+     * Token从当前账户转给多个目的账户
+     * 
+     * @param _tos 目的账户
+     */
+    function transferMulti(TransferToken[] _tos) public {
+        for ( uint i=0; i<_tos.lenght; i++) {
+            _transfer(msg.sender, _tos[i].to, _tos[i].value)
+        }
     }
 
     /**

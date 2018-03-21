@@ -27,8 +27,6 @@ contract AutoApply is Basic {
     event Buy(address from, uint value);
     // 退款
     event Refund(address to, uint value);
-    // 提币
-    event Withdraw(uint value);
 
     /**
      * 初始化
@@ -63,15 +61,6 @@ contract AutoApply is Basic {
         // 把以太币转回去
         _to.transfer(_value);
         Refund(_to, _value);
-    }
-    
-    /**
-     * owner取出以太币
-     * @param _value eth数量 
-     */
-    function withdraw(uint _value) onlyOwner public {
-        owner.transfer(_value);
-        Withdraw(_value);
     }
 
     /**
