@@ -21,6 +21,8 @@ contract Basic is Owner {
 
     // 账户里可用token余额
     mapping (address => uint256) public balanceOf;
+    // 允许动用token
+    mapping(address => mapping(address => uint256)) public allowed;
 
     // 事件通知
     // Token转账消息
@@ -31,6 +33,8 @@ contract Basic is Owner {
     event Offer(uint256 value);
     // 提币
     event Withdraw(uint value);
+    // 授权事件
+    event Approval(address indexed spender, uint tokens);
 
     /**
      * 初始化
@@ -73,6 +77,7 @@ contract Basic is Owner {
         require(balanceOf[_to] + _value> balanceOf[_to]);
 
         uint previousBalances = balanceOf[_from] + balanceOf[_to];
+
         // 转账
         balanceOf[_from] -= _value;
         balanceOf[_to] += _value;
@@ -105,13 +110,25 @@ contract Basic is Owner {
     }
 
     /**
+     * @param 目的账户
+     *
+     */
+    function approve(address _spender, uint _value) public {
+        allowed[msg.sender][spender] = _value;
+    }
+
+    /**
      * Token从指定账户转账给目的账户
      *
      * @param _from 来源账户
      * @param _to   目的账户
      * @param _value 金额
      */
-    function transferFrom(address _from, address _to, uint256 _value) onlyOwner public {
+    function transferFrom(address _from, address _to, uint256 _value) public {
+        require(allowed[_from][msg.sender] >= _value);
+        // 减少授权token
+        allowed[_from][msg.sender] = allowed[_from][msg.sender].sub(_value);
+
         _transfer(_from, _to, _value);
     }
 
