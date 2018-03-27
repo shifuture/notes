@@ -6,7 +6,7 @@
 
 - 比特币值多少钱
 - 区块链泡沫
-- 哪种币好
+- 哪种山寨币好
 - ...
 
 ### 聊什么
@@ -34,7 +34,7 @@
 
  demo: https://anders.com/blockchain/blockchain.html
 
- Q:  这不是私印货币吗？
+ Q:  这是私印货币吗？
 
 ## 比特币
 
@@ -48,6 +48,7 @@
 
  - vitalik
  - 智能合约
+ - ERC20
 
 ## 安全性
 
@@ -70,6 +71,11 @@
  - metamask
  - remix
  - web3
+
+### Telegram API
+
+  - https://core.telegram.org/
+  - 机器人
 
 ## ICO
 
