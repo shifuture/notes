@@ -6,7 +6,7 @@ Now the internet age is over, welcome to the age of AI and blockchain.
 
 ### 不聊什么
 
- - 编码( 尽量不涉及 )
+ - 编码
  - 公式
  - 推导
  - 前景
