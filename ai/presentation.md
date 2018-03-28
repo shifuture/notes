@@ -8,20 +8,22 @@ Now the internet age is over, welcome to the age of AI and blockchain.
 
  - 编码
  - 公式
+ - 线性代数，矩阵，离散数学
  - 推导
- - 前景
- - 方向
  - ...
+
+ Q: 数学重要吗？
 
 ### 聊什么
 
+ - 机器学习实质: 通过各种数据拟合方程, 推断结果
  - 数据抽象方法
  - 数据模型选择
  - 数据筛选预处理
  - 建模
  - 验证模型
 
- 看看我们目的是什么， 通过推断用户投资能力
+ 举个凤凰钱包例子， 通过推断用户投资能力
 
 ## 数据抽象方法
 
@@ -77,11 +79,12 @@ Now the internet age is over, welcome to the age of AI and blockchain.
 ## 数据模型选择
 
  - 线性回归
+ - K-MEANS
  - KNN
- - SVM
  - 随机森林
  - 神经网络
  - 贝叶斯
+ - SVM
  - ...
 
 ## 数据筛选预处理
