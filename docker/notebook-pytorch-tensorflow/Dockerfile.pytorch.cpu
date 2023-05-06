@@ -1,0 +1,34 @@
+ARG BASE_IMAGE=ubuntu:20.04
+FROM ${BASE_IMAGE}
+
+ARG PYTORCH_VERSION=1.13.1
+ARG TORCHVISION_VERSION=0.14.1
+ARG TORCHAUDIO_VERSION=0.13.1
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && apt-get install -y tzdata \
+    && ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+    && dpkg-reconfigure --frontend noninteractive tzdata
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    ca-certificates \
+    cmake \
+    git \
+    libjpeg-dev \
+    libpng-dev \
+    python3-dev \
+    python3-pip \
+    python3-setuptools \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN pip3 install --no-cache-dir \
+    torch==${PYTORCH_VERSION}+cpu \
+    torchvision==${TORCHVISION_VERSION}+cpu \
+    torchaudio==${TORCHAUDIO_VERSION} \
+    --extra-index-url https://download.pytorch.org/whl/cpu \
+    && rm -rf /root/.cache
+
+WORKDIR /workspace
+

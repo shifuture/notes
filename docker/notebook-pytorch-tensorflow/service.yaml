@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: jupyter-pytorch-tensorflow
+spec:
+  selector:
+    app: jupyter-pytorch-tensorflow
+  ports:
+  - name: http
+    port: 8888
+    targetPort: 8888
+  type: NodePort
+

@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jupyter-pytorch-tensorflow
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jupyter-pytorch-tensorflow
+  template:
+    metadata:
+      labels:
+        app: jupyter-pytorch-tensorflow
+    spec:
+      containers:
+      - name: jupyter-pytorch-tensorflow
+        image: shifuture/jupyter-tensorflow-pytorch
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8888
+        volumeMounts:
+        - name: notebooks
+          mountPath: /home/jovyan/work
+      volumes:
+      - name: notebooks
+        persistentVolumeClaim:
+          claimName: jupyter-pvc
+
